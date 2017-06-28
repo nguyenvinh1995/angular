@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.css">
     <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!--<script type="text/javascript" src="js/user.js"></script>-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <style>
@@ -63,30 +64,20 @@
 </style>
 
 <body>
-<div class="container user">
+<div class="container user " ng-app="vinh" ng-controller="vinh-app">
     <div class="row">
-        <div class="col-md-6 col-sm-6  col-xs-6 add-user" ng-app="vinh" ng-controller="vinh-app">
+        <div class="col-md-6 col-sm-6  col-xs-6 add-user">
             <h1 class="text-center">ADD USER</h1><br>
             <button type="button" class="btn btn-lg btn1 search-btn" ng-click="search()" > Search:</button>
             <input style="font-size: 20px" class="searchtext" type="text" placeholder="search_user" ng-model="userinput" />
             <br>
-            <table>
-                <thead>
-                <th style="color: cadetblue; font-size: 20px; padding: 10px 20px">USER</th>
-                </thead>
-            </table>
-
+                <h3 style="color: cadetblue; font-size: 20px; padding: 10px 20px">USER</h3>
             <div class="text-center table1">
-                <table>
-                    <tbody>
-                    <p ng-repeat="a in users | filter : searchuser">{{a.name}} <input id={{a.id}} type="checkbox" ng-model="a.checked" ng-click="clickusers(a)"></p>
-                    </tbody>
-                     </table>
-            </div><br>
-
+                <p ng-repeat="a in users | filter : searchuser">{{a.name}} <input id={{a.id}} type="checkbox" ng-model="a.check" ng-click="select(a)" > </p>
+                </div><br>
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">
-                    <button type="button" class="btn btn-lg btn2" ng-click="adduser()">Add To List</button>
+                    <button type="button" class="btn btn-lg btn2 add " ng-click="add()">Add To List</button>
                 </div>
             </div>
 
@@ -95,21 +86,22 @@
         <div class="col-md-6 col-sm-6 col-sx-6 text-center add-user1 ">
             <h2>SCRENARIO NAME</h2>
             <br>
-            <P style="color: cadetblue; font-size: 30px"> User List</P>
+            <P style="color: cadetblue; font-size: 30px"> User List</P><br><br>
             <table class="table table-striped table-hover">
-            <tr ng-repeat="a in listusers">
+            <tr ng-repeat="a in addusers">
                 <td > {{a.name}} </td>
                 <td>
-                    <button ng-click="undo(a)" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button class="close" type="button" ng-click="xoa(a)" aria-label="close"><span aria-hidden="true">&times;</span></button>
                 </td>
-            </tr></table>
+            </tr>
+            </table>
         </div>
     </div>
 </div>
 <script>
     var app = angular
         .module("vinh", [])
-    app.controller("vinh-app", function ($scope) {
+        .controller("vinh-app", function ($scope) {
         $scope.users  = [
             {id: '1', name: "user1"},
             {id: '2', name: "user2"},
@@ -117,8 +109,14 @@
             {id: '4', name: "user4"},
             {id: '5', name: "user5"},
             {id: '6', name: "user6"},
+            {id: '7', name: "user7"},
+            {id: '8', name: "user8"},
+            {id: '9', name: "user9"},
+            {id: '10', name: "user10"},
+            {id: '11', name: "user11"},
+
         ];
-        $scope.listusers = [];
+        $scope.addusers = [];
         $scope.temp = [];
 
 // search
@@ -127,14 +125,13 @@
         }
 
 // adduser
-        $scope.clickusers = function(a){
-
-            if (a.checked == true) {
-                $scope.temp.push({id: a.id,name: a.name});
+            $scope.select = function(a){
+            if (a.check == true) {
+                $scope.temp.push({id: a.id , name: a.name});
             }else{
                 var i=0;
                 while(i < $scope.temp.length){
-                    if($scope.temp[i].name==a.name){
+                    if($scope.temp[i].name == a.name){
                         $scope.temp.splice(i, 1);
                     }
                     i ++;
@@ -142,8 +139,8 @@
             }
         }
 
-        $scope.addusers = function(){
-            $scope.listusers = $scope.listusers.concat($scope.temp);
+            $scope.add = function(){
+            $scope.addusers = $scope.addusers.concat($scope.temp);
 
             for (var i = 0; i < $scope.temp.length; i++) {
                 for (var j = 0; j < $scope.users.length; j++) {
@@ -154,18 +151,64 @@
             }
             $scope.temp.splice(0,$scope.temp.length);
         }
+
 //remove
-        $scope.undo = function(a){
+        $scope.xoa = function(a){
             $scope.users.push({id: a.id,name: a.name})
-            for (var j = 0; j < $scope.listusers.length; j++) {
-                if ($scope.listusers[j].id == a.id) {
-                    $scope.listusers.splice(j,1);
+            for (var j = 0; j < $scope.addusers.length; j++) {
+                if ($scope.addusers[j].id == a.id) {
+                    $scope.addusers.splice(j,1);
 
                 }
             }
         }
     });
 
+
+    //            $scope.select=function(a){
+    //                if(a.check==true){
+    //                    $scope.temp.push({id: a.id, name: a.name});
+    //                }else{
+    //                    var i=0;
+    //                    while(i < $scope.temp.length){
+    //                        if($scope.temp[i].name==a.name){
+    //                            $scope.temp.splice(i, 1);
+    //                        }
+    //                        i ++;
+    //                    }
+    //                }
+    //            };
+    //
+    //            $scope.addusers=function () {
+    //                var i=0, j = 0, x = 0;
+    //                while(j < $scope.temp.length){
+    //                    for(x = 0; x < $scope.users.length; x ++){
+    //                        if($scope.users[x].name ==  $scope.temp[j].name){
+    //                            $scope.users.splice(x, 1);
+    //                        }
+    //                    }
+    //                    j ++;
+    //                };
+    //
+    //                if($scope.temp.length > 0){
+    //                    while(i < $scope.temp.length){
+    //                        $scope.addusers.push({id: $scope.temp[i].id, name:$scope.temp[i].name});
+    //                        $scope.temp.shift();
+    //                    }
+    //                }
+    //            };
+    ////remove
+    //            $scope.xoa = function(a) {
+    //                $scope.users.push({id: a.id, name: a.name});
+    //                $scope.users.sort();
+    //                var i = 0;
+    //                for(i = 0; i < $scope.addusers.length; i ++){
+    //                    if($scope.addusers[i] == a){
+    //                        $scope.addusers.splice(i, 1);
+    //                    }
+    //                }
+    //            };
+    //        });
 
 </script>
 </body>
