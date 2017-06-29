@@ -27,23 +27,29 @@ var app = angular
         }
 
 // adduser
-        $scope.select = function(a){
+        $scope.select = function(a) {
             if (a.check == true) {
-                $scope.temp.push({id: a.id , name: a.name, age: a.age, email: a.email});
-            }else{
-                var i=0;
-                while(i < $scope.temp.length){
-                    if($scope.temp[i].name == a.name){
+                $scope.temp.push({id: a.id, name: a.name, age: a.age, email: a.email});
+                if ($scope.temp.length == $scope.users.length) {
+                    $scope.checkAll = true;
+                    $scope.selectedAll = true;
+                }
+            } else {
+                var i = 0;
+                while (i < $scope.temp.length) {
+                    if ($scope.temp[i].name == a.name) {
                         $scope.temp.splice(i, 1);
                     }
-                    i ++;
+                    i++;
+                }
+                if ($scope.temp.length < $scope.users.length) {
+                    $scope.selectedAll = false;
                 }
             }
         }
 
-
-
         $scope.add = function(){
+            if ($scope.temp.length !=0){
             $scope.addusers = $scope.addusers.concat($scope.temp);
             for (var i = 0; i < $scope.temp.length; i++) {
                 for (var j = 0; j < $scope.users.length; j++) {
@@ -53,7 +59,11 @@ var app = angular
                 }
             }
             $scope.temp.splice(0,$scope.temp.length);
-        }
+            $scope.checkAll = false;
+        }else{
+                alert("Không có User nào được chọn");
+            }
+            }
 
 //remove
         $scope.xoa = function(a) {
@@ -87,22 +97,22 @@ var app = angular
             };
 
 // CheckAll
-
-            $scope.checkAll = function () {
-                if ($scope.selectedAll) {
-                    $scope.selectedAll = true;
-                } else {
-                    $scope.selectedAll = false;
+            $scope.checkAll = function(){
+                if ($scope.users.length != 0 && $scope.selectedAll == true) {
+                    $scope.temp = angular.copy($scope.users);
+                }else{
+                    $scope.temp = [];
                 }
-                angular.forEach($scope.users, function (a) {
-                    a.Selected = $scope.selectedAll;
-                });
-            };
+            }
+            // $scope.checkAll = function () {
+            //     if ($scope.selectedAll) {
+            //         $scope.selectedAll = true;
+            //     } else {
+            //         $scope.selectedAll = false;
+            //     }
+            //     angular.forEach($scope.users, function (a) {
+            //         a.Selected = $scope.selectedAll;
+            //     });
+            // };
 
- // Fix scroll
-
-
-
-
-
-            });
+             });

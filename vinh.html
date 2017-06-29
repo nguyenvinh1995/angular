@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/user.css">
     <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -13,124 +14,6 @@
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
     <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 </head>
-
-<style>
-    body {
-        padding: 30px;
-    }
-
-    .user {
-        padding: 20px 30px;
-        border: cadetblue solid 2px;
-        background-color: inherit;
-        height: 700px;
-    }
-
-    .add-user {
-        border-right: #bcdff1 solid 2px;
-    }
-
-    .add-user1 {
-        border-left: #bcdff1 solid 2px;
-    }
-
-    .table1 {
-        overflow: scroll;
-        height: 400px;
-        border: cadetblue solid 2px;
-        margin-top: 11px;
-    }
-
-    .table2 {
-        overflow: scroll;
-        height: 400px;
-        border: cadetblue solid 2px;
-        padding: -10px -10px;
-    }
-
-    .btn1 {
-        color: cadetblue;
-        font-size: 20px;
-        background-color: inherit;
-        border: cadetblue solid 2px;
-        padding: 5px 10px;
-    }
-
-    .btn2 {
-        color: cadetblue;
-        font-size: 20px;
-        background-color: inherit;
-        border: cadetblue solid 2px;
-    }
-
-    .btn3 {
-        background-color: inherit;
-        border: white;
-    }
-
-    h2 {
-        color: cadetblue;
-        font-size: 40px;
-    }
-
-    h1 {
-        color: cadetblue;
-        font-size: 40px;
-    }
-    h6{
-        font-size: 20px;
-        color: cadetblue;
-    }
-
-    .searchtext {
-        padding: 0px 15px;
-    }
-
-    input {
-        padding: 0px 20px;
-    }
-
-    td {
-        border: 1px solid black;
-        white-space: nowrap;
-    }
-
-    th {
-        border: 1px solid black;
-        white-space: nowrap;
-        border: 1px solid black;
-    }
-
-    .hiddenScrollbar::-webkit-scrollbar {
-        background-color: transparent;
-    }
-    input[type=text] {
-        width: 130px;
-        box-sizing: border-box;
-        border: 2px solid #ccc;
-        border-radius: 4px;
-        font-size: 19px;
-        background-color: white;
-        background-image: url('img/icon1.png');
-        background-position: 10px 10px;
-        background-repeat: no-repeat;
-        padding: 12px 20px 12px 40px;
-        -webkit-transition: width 0.4s ease-in-out;
-        transition: width 0.4s ease-in-out;
-    }
-
-    input[type=text]:focus {
-        width: 100%;
-       margin-right: -5px;
-    }
-    form{
-    margin-right: 30px;
-    }
-
-
-
-</style>
-
 <body>
 <div class="container-fluid user " data-ng-app="vinh" ng-controller="vinh-app">
     <div class="row">
@@ -139,33 +22,26 @@
             <div class="row text-center">
                 <div class="col-md-12 col-sm-12">
                     <h1>ADD USER</h1><br>
-
                     <form ng-click="search()" >
                         <input class="searchtext" type="text" name="search" placeholder="Search.." ng-model="userinput">
                     </form>
-                    <!--<p-->
-                    <!--<button type="button" class="btn btn-lg btn1 search-btn" ng-click="search()"> Search:</button>-->
-                    <!--<input style="font-size: 20px"  type="text" placeholder="search_user" >-->
-                    <!--</p>-->
                 </div>
             </div>
 
             <br>
-            <div class=" row table1 "
-                 style="display: inline-block; height: 400px; width: 100%; overflow-x: scroll; overflow-y: hidden ;margin-top: 2px ">
+            <div class=" row table1">
                 <div style="position: relative;">
-                    <div class="col-md-12 col-sm-12"
-                         style="display: inline-block; position: absolute; left: 0px; top: 0px; height:400px; overflow-y: scroll;">
+                    <div class="col-md-12 col-sm-12 table-user">
                         <table class="table table-striped table-hover table-bordered " style="border-collapse: collapse;">
 
                             <thead>
                             <th class="text-left">
-                                <p style="color: cadetblue; font-size: 20px;">
+                                <p>
                                     <input type="checkbox" ng-model="selectedAll" ng-click="checkAll()">Check all</p>
                             </th>
 
                             <th class="text-left">
-                                <p style="color: cadetblue; font-size: 20px;  ">Name</p>
+                                <p>Name</p>
                             </th>
                             </thead>
                             <tbody>
@@ -177,18 +53,17 @@
                         </table>
                     </div>
 
-                    <div class="hiddenScrollbar"
-                         style=" ;padding-left:15px; padding-right:15px; display: inline-block; pointer-events: none; position: relative; left: 0px; top: 0px; height: 400px; width:100%; overflow-y: scroll">
+                    <div class="hiddenScrollbar">
                         <table class="table table-striped table-hover table-bordered "
                                style="border-collapse: collapse;">
                             <thead style="pointer-events: auto;background-color:#bcdff1">
                             <th class="text-left">
-                                <p style="color: cadetblue; font-size: 20px">
+                                <p>
                                     <input type="checkbox" ng-model="selectedAll" ng-click="checkAll(a)">Check all</p>
                             </th>
 
                             <th class="text-left">
-                                <p style="color: cadetblue; font-size: 20px;  ">Name</p>
+                                <p>Name</p>
                             </th>
                             </thead>
                             <tbody style="visibility: hidden" >
@@ -216,14 +91,15 @@
                 <h2>SCRENARIO NAME</h2>
                 <br>
                 <P style="color: cadetblue; font-size: 30px"> User List</P><br>
-                <div class=" row table2 " style="display: inline-block; height: 400px; width: 100%; overflow-x: scroll; overflow-y: hidden">
+                <div class=" row table2 ">
                     <div style="position: relative;">
-                        <div class="col-md-12 col-sm-12" style="display: inline-block; position: absolute; left: 0px; top: 0px; height:400px; overflow-y: scroll">
-                    <table class="table table-striped table-hover table-bordered " id="table" style="border-collapse: collapse;" >
-                        <thead style="height: 58px" >
+                        <div class="col-md-12 col-sm-12 table-user" >
+                            <table class="table table-striped table-hover table-bordered "
+                                   style="border-collapse: collapse;">
+                                <thead style="pointer-events: auto">
 
                             <th class="text-center">
-                                <p style="font-size: 20px ; ">ID
+                                <p>ID
                                     <button type="button" class="btn btn-sm btn3" ng-click="sortBy('id')">
                                         <span class="glyphicon glyphicon-sort"></span>
                                     </button>
@@ -232,7 +108,7 @@
                             </th>
 
                             <th class="text-center">
-                                <p style="font-size: 20px">Name
+                                <p>Name
                                     <button type="button" class="btn btn-sm btn3" ng-click="sortBy('name')">
                                         <span class="glyphicon glyphicon-sort"></span>
                                     </button>
@@ -241,7 +117,7 @@
                             </th>
 
                             <th class="text-center">
-                                <p style="font-size: 20px">Age
+                                <p>Age
                                     <button type="button" class="btn btn-sm btn3" ng-click="sortBy('age')">
                                         <span class="glyphicon glyphicon-sort"></span>
                                     </button>
@@ -250,7 +126,7 @@
                             </th>
 
                             <th class="text-center">
-                                <p style="font-size: 20px">Email
+                                <p>Email
                                     <button type="button" class="btn btn-sm btn3" ng-click="sortBy('email')">
                                         <span class="glyphicon glyphicon-sort"></span>
                                     </button>
@@ -259,7 +135,7 @@
                             </th>
 
                             <th class="text-center">
-                                <h6><span class="glyphicon glyphicon-remove"></span></h6>
+                                <h3><span class="glyphicon glyphicon-remove"></span></h3>
                             </th>
 
 
@@ -278,14 +154,13 @@
                         </tbody>
                     </table>
                 </div>
-                        <div class="hiddenScrollbar"
-                             style=" ;padding-left:15px; padding-right:15px; display: inline-block; pointer-events: none; position: relative; left: 0px; top: 0px; height: 400px; width:100%; overflow-y: scroll">
-                            <table class="table table-striped table-hover table-bordered "
+                        <div class="hiddenScrollbar">
+                        <table class="table table-striped table-hover table-bordered "
                                    style="border-collapse: collapse;">
-                                <thead style="pointer-events: auto;background-color:#bcdff1; height: 58px">
+                                <thead style="pointer-events: auto;background-color:#bcdff1">
 
                                     <th class="text-center">
-                                        <p style="font-size: 20px">ID
+                                        <p>ID
                                             <button type="button" class="btn btn-sm btn3" ng-click="sortBy('id')">
                                                 <span class="glyphicon glyphicon-sort"></span>
                                             </button>
@@ -294,7 +169,7 @@
                                     </th>
 
                                     <th class="text-center">
-                                        <p style="font-size: 20px">Name
+                                        <p>Name
                                             <button type="button" class="btn btn-sm btn3" ng-click="sortBy('name')">
                                                 <span class="glyphicon glyphicon-sort"></span>
                                             </button>
@@ -303,7 +178,7 @@
                                     </th>
 
                                     <th class="text-center">
-                                        <p style="font-size: 20px">Age
+                                        <p>Age
                                             <button type="button" class="btn btn-sm btn3" ng-click="sortBy('age')">
                                                 <span class="glyphicon glyphicon-sort"></span>
                                             </button>
@@ -312,7 +187,7 @@
                                     </th>
 
                                     <th class="text-center">
-                                        <p style="font-size: 20px">Email
+                                        <p>Email
                                             <button type="button" class="btn btn-sm btn3" ng-click="sortBy('email')">
                                                 <span class="glyphicon glyphicon-sort"></span>
                                             </button>
