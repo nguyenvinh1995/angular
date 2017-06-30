@@ -33,6 +33,10 @@ var app = angular.module("vinh", []);
                     $scope.checkAll = true;
                     $scope.selectedAll = true;
                 }
+                if ($scope.temp.length == $scope.users.length) {
+                    $scope.selectedAll = true;
+                    $scope.All = true;
+                }
             } else {
                 var i = 0;
                 while (i < $scope.temp.length) {
@@ -42,7 +46,7 @@ var app = angular.module("vinh", []);
                     i++;
                 }
                 if ($scope.temp.length < $scope.users.length) {
-                    $scope.selectedAll = false;
+                    $scope.All = false;
                 }
             }
         }
@@ -55,6 +59,21 @@ var app = angular.module("vinh", []);
             }
         }
 
+        // $scope.All = function () {
+        //         if( $scope.temp.length == $scope.users.length){
+        //             $scope.selectedAll = true;
+        //         }else {
+        //             $scope.All = false;
+        //         }
+        //     }
+
+
+
+
+
+
+
+  // ADD
         $scope.add = function(){
             if ($scope.temp.length !=0){
             $scope.addusers = $scope.addusers.concat($scope.temp);
@@ -81,7 +100,6 @@ var app = angular.module("vinh", []);
                 return false;
             }
 
-            // $scope.users.push({id: a.id, name: a.name, age: a.age,email: a.email});
             $scope.users.sort();
             var i = 0;
             for(i = 0; i < $scope.addusers.length; i ++){
@@ -90,9 +108,6 @@ var app = angular.module("vinh", []);
                 }
             }
         };
-        // $scope.xoa_user=function () {
-        //     elert("Bạn muốn xóa User này?");
-        // };
 
 // Sort
             $scope.danhsach = 'id';

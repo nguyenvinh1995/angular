@@ -36,18 +36,20 @@
 
                             <thead>
                             <th class="text-left">
-                                <p>
-                                    <input type="checkbox" ng-model="selectedAll" data-ng-click="checkAll()">Check all</p>
+                                <label class="checkbox-inline">
+                                    <p>
+                                        <input type="checkbox" ng-model="selectedAll" ng-click="checkAll(a)" ng-checked="All">Check all
+                                    </p>
+                                </label>
                             </th>
-
                             <th class="text-left">
-                                <p>Name</p>
+                                <label> <p>Name</p></label>
                             </th>
                             </thead>
                             <tbody>
                             <tr ng-repeat="a in users | filter : {name: ''+a} ">
-                                <td><input type="checkbox" ng-model="a.check" ng-checked="selectedAll" ng-click="select(a)"></td>
-                                <td><label ng-model="a.Selected" class="text-center">{{a.name}}</label></td>
+                                <td><input id = {{a.id}} type="checkbox" ng-model="a.check" ng-checked="selectedAll" ng-click="select(a)"></td>
+                                <td><label for="{{a.id}}" class="text-center checkbox-inline">{{a.name}}</label></td>
                             </tr>
                             </tbody>
                         </table>
@@ -58,13 +60,15 @@
                                style="border-collapse: collapse;">
                             <thead style="pointer-events: auto;background-color:#bcdff1">
                             <th class="text-left">
+                                <label class="checkbox-inline">
                                 <p>
-                                    <input type="checkbox" ng-model="selectedAll" ng-click="checkAll(a)">Check all</p>
+                                    <input type="checkbox" ng-model="selectedAll" ng-click="checkAll(a)">Check all
+                                </p>
+                                </label>
                             </th>
 
                             <th class="text-left">
-                                <p>Name</p>
-                            </th>
+                                <label> <p>Name</p></label>                            </th>
                             </thead>
                             <tbody style="visibility: hidden" >
                             <tr ng-repeat="a in users | filter : searchuser">
@@ -198,7 +202,6 @@
                                     <th class="text-center">
                                         <h6><span class="glyphicon glyphicon-remove"></span></h6>
                                     </th>
-
 
                                 </thead>
                                 <tbody style="visibility: hidden">
