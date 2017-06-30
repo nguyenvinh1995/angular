@@ -14,10 +14,10 @@
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
     <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 </head>
-<body>
+<body class="container-fluid " >
 <div class="container-fluid user " data-ng-app="vinh" ng-controller="vinh-app">
     <div class="row">
-        <div class="col-md-4 col-sm-4 col-xs-4 add-user">
+        <div class="col-md-4 col-sm-12 col-xs-12 add-user">
 
             <div class="row text-center">
                 <div class="col-md-12 col-sm-12">
@@ -47,7 +47,7 @@
                             </th>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="a in users | filter : {name: ''+a} ">
+                            <tr ng-repeat="a in users | filter : {name: ''+a} | orderBy : 'name'" >
                                 <td><input id = {{a.id}} type="checkbox" ng-model="a.check" ng-checked="selectedAll" ng-click="select(a)"></td>
                                 <td><label for="{{a.id}}" class="text-center checkbox-inline">{{a.name}}</label></td>
                             </tr>
@@ -91,7 +91,7 @@
 
             <hr/>
 
-            <div class="col-md-8 col-sm-8 col-sx-8 text-center add-user1 ">
+            <div class="col-md-8 col-sm-12 col-sx-12 text-center add-user1 ">
                 <h2>SCRENARIO NAME</h2>
                 <br>
                 <P style="color: cadetblue; font-size: 30px"> User List</P><br>
@@ -140,7 +140,7 @@
 
                             <th class="text-center">
                                 <h3><button class="close" type="button" ng-click="xoa(a)" aria-label="close"><span
-                                        aria-hidden="true">&times;</span></button></h3>
+                                        aria-hidden="true">&timesX</span></button></h3>
                             </th>
 
 

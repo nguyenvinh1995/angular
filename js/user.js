@@ -118,7 +118,6 @@ var app = angular.module("vinh", []);
                 $scope.danhsach = danhsach;
             };
 
-
             // $scope.checkAll = function () {
             //     if ($scope.selectedAll) {
             //         $scope.selectedAll = true;
