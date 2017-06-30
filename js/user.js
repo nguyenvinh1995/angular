@@ -1,5 +1,4 @@
-var app = angular
-    .module("vinh", []);
+var app = angular.module("vinh", []);
         app.controller("vinh-app", function ($scope, $http) {
         $http.get("users.json").then(function (response) {
             $scope.users = response.data.datauser;
@@ -47,6 +46,14 @@ var app = angular
                 }
             }
         }
+            // CheckAll
+        $scope.checkAll = function(){
+            if ($scope.users.length != 0 && $scope.selectedAll == true) {
+                $scope.temp = angular.copy($scope.users);
+            }else{
+                $scope.temp = [];
+            }
+        }
 
         $scope.add = function(){
             if ($scope.temp.length !=0){
@@ -59,7 +66,7 @@ var app = angular
                 }
             }
             $scope.temp.splice(0,$scope.temp.length);
-            $scope.checkAll = false;
+            $scope.selectedAll = false;
         }else{
                 alert("Không có User nào được chọn");
             }
@@ -74,7 +81,7 @@ var app = angular
                 return false;
             }
 
-            $scope.users.push({id: a.id, name: a.name, age: a.age,email: a.email});
+            // $scope.users.push({id: a.id, name: a.name, age: a.age,email: a.email});
             $scope.users.sort();
             var i = 0;
             for(i = 0; i < $scope.addusers.length; i ++){
@@ -96,14 +103,7 @@ var app = angular
                 $scope.danhsach = danhsach;
             };
 
-// CheckAll
-            $scope.checkAll = function(){
-                if ($scope.users.length != 0 && $scope.selectedAll == true) {
-                    $scope.temp = angular.copy($scope.users);
-                }else{
-                    $scope.temp = [];
-                }
-            }
+
             // $scope.checkAll = function () {
             //     if ($scope.selectedAll) {
             //         $scope.selectedAll = true;
